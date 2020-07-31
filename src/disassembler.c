@@ -1,3 +1,4 @@
+#include <stdio.h>
 /*    
     *codebuffer is a valid pointer to 8080 assembly code    
     pc is the current offset into the code
@@ -118,11 +119,11 @@ int disassemble8080Op(unsigned char *codebuffer, int pc)
         printf("NOP");
         break;
     case 0x21:
-        printf("LXI     H,#$%02x#$%02x", code[2], code[1]);
+        printf("LXI     H,#$%02x%02x", code[2], code[1]);
         opbytes = 3;
         break;
     case 0x22:
-        printf("SHLD    #$%02x#$%02x", code[2], code[1]);
+        printf("SHLD    #$%02x%02x", code[2], code[1]);
         opbytes = 3;
         break;
     case 0x23:
@@ -135,7 +136,7 @@ int disassemble8080Op(unsigned char *codebuffer, int pc)
         printf("DCR     H");
         break;
     case 0x26:
-        printf("MVI     H,#$%02x#$%02x", code[2], code[1]);
+        printf("MVI     H,#$%02x%02x", code[2], code[1]);
         opbytes = 3;
         break;
     case 0x27:
@@ -148,7 +149,7 @@ int disassemble8080Op(unsigned char *codebuffer, int pc)
         printf("DAD     H");
         break;
     case 0x2a:
-        printf("LHLD    #$%02x#$%02x", code[2], code[1]);
+        printf("LHLD    #$%02x%02x", code[2], code[1]);
         opbytes = 3;
         break;
     case 0x2b:
@@ -171,11 +172,11 @@ int disassemble8080Op(unsigned char *codebuffer, int pc)
         printf("NOP");
         break;
     case 0x31:
-        printf("LXI     SP,#$%02x#$%02x", code[2], code[1]);
+        printf("LXI     SP,#$%02x%02x", code[2], code[1]);
         opbytes = 3;
         break;
     case 0x32:
-        printf("STA     #$%02x", code[2], code[1]);
+        printf("STA     #$%02x%02x", code[2], code[1]);
         opbytes = 3;
         break;
     case 0x33:
@@ -201,7 +202,7 @@ int disassemble8080Op(unsigned char *codebuffer, int pc)
         printf("DAD     SP");
         break;
     case 0x3a:
-        printf("LDA     #$%02x#$%02x", code[2], code[1]);
+        printf("LDA     #$%02x%02x", code[2], code[1]);
         opbytes = 3;
         break;
     case 0x3b:
@@ -611,22 +612,22 @@ int disassemble8080Op(unsigned char *codebuffer, int pc)
         printf("POP     B");
         break;
     case 0xc2:
-        printf("JNZ     #$%#$%", code[2], code[1]);
+        printf("JNZ     #$%02x%02x", code[2], code[1]);
         opbytes = 3;
         break;
     case 0xc3:
-        printf("JMP     #$%#$%", code[2], code[1]);
+        printf("JMP     #$%02x%02x", code[2], code[1]);
         opbytes = 3;
         break;
     case 0xc4:
-        printf("CNZ     #$%#$%", code[2], code[1]);
+        printf("CNZ     #$%02x%02x", code[2], code[1]);
         opbytes = 3;
         break;
     case 0xc5:
         printf("PUSH    B");
         break;
     case 0xc6:
-        printf("ADI     #$%", code[1]);
+        printf("ADI     #$%02x", code[1]);
         opbytes = 2;
         break;
     case 0xc7:
@@ -639,22 +640,22 @@ int disassemble8080Op(unsigned char *codebuffer, int pc)
         printf("RET");
         break;
     case 0xca:
-        printf("JZ      #$%#$%", code[2], code[1]);
+        printf("JZ      #$%02x%02x", code[2], code[1]);
         opbytes = 3;
         break;
     case 0xcb:
         printf("NOP");
         break;
     case 0xcc:
-        printf("CZ      #$%#$%", code[2], code[1]);
+        printf("CZ      #$%02x%02x", code[2], code[1]);
         opbytes = 3;
         break;
     case 0xcd:
-        printf("CALL    #$%#$%", code[2], code[1]);
+        printf("CALL    #$%02x%02x", code[2], code[1]);
         opbytes = 3;
         break;
     case 0xce:
-        printf("ACI     #$%", code[1]);
+        printf("ACI     #$%02x", code[1]);
         opbytes = 2;
         break;
     case 0xcf:
@@ -667,22 +668,22 @@ int disassemble8080Op(unsigned char *codebuffer, int pc)
         printf("POP     D");
         break;
     case 0xd2:
-        printf("JNC     #$%#$%", code[2], code[1]);
+        printf("JNC     #$%02x%02x", code[2], code[1]);
         opbytes = 3;
         break;
     case 0xd3:
-        printf("OUT     #$%", code[1]);
+        printf("OUT     #$%02X", code[1]);
         opbytes = 2;
         break;
     case 0xd4:
-        printf("CNC     #$%#$%", code[2], code[1]);
+        printf("CNC     #$%02x%02x", code[2], code[1]);
         opbytes = 3;
         break;
     case 0xd5:
         printf("PUSH    D");
         break;
     case 0xd6:
-        printf("SUI     #$%", code[1]);
+        printf("SUI     #$%02x", code[1]);
         opbytes = 2;
         break;
     case 0xd7:
@@ -695,22 +696,22 @@ int disassemble8080Op(unsigned char *codebuffer, int pc)
         printf("NOP");
         break;
     case 0xda:
-        printf("JC      #$%#$%", code[2], code[1]);
+        printf("JC      #$%02x%02x", code[2], code[1]);
         opbytes = 3;
         break;
     case 0xdb:
-        printf("IN      #$%", code[1]);
+        printf("IN      #$%02x", code[1]);
         opbytes = 2;
         break;
     case 0xdc:
-        printf("CC      #$%#$%", code[2], code[1]);
+        printf("CC      #$%02x%02x", code[2], code[1]);
         opbytes = 3;
         break;
     case 0xdd:
         printf("NOP");
         break;
     case 0xde:
-        printf("SBI     #$%", code[1]);
+        printf("SBI     #$%02x", code[1]);
         opbytes = 2;
         break;
     case 0xdf:
@@ -723,21 +724,21 @@ int disassemble8080Op(unsigned char *codebuffer, int pc)
         printf("POP     H");
         break;
     case 0xe2:
-        printf("JPO      #$%#$%", code[2], code[1]);
+        printf("JPO      #$%02x%02x", code[2], code[1]);
         opbytes = 3;
         break;
     case 0xe3:
         printf("XTHL");
         break;
     case 0xe4:
-        printf("CPO     #$%#$%", code[2], code[1]);
+        printf("CPO     #$%02x%02x", code[2], code[1]);
         opbytes = 3;
         break;
     case 0xe5:
         printf("PUSH    H");
         break;
     case 0xe6:
-        printf("ANI     #$%", code[1]);
+        printf("ANI     #$%02x", code[1]);
         opbytes = 2;
         break;
     case 0xe7:
@@ -750,21 +751,21 @@ int disassemble8080Op(unsigned char *codebuffer, int pc)
         printf("PCHL");
         break;
     case 0xea:
-        printf("JPE     #$%#$%", code[2], code[1]);
+        printf("JPE     #$%02x%02x", code[2], code[1]);
         opbytes = 3;
         break;
     case 0xeb:
         printf("XCHG");
         break;
     case 0xec:
-        printf("CPE     #$%#$%", code[2], code[1]);
+        printf("CPE     #$%02x%02x", code[2], code[1]);
         opbytes = 3;
         break;
     case 0xed:
         printf("NOP");
         break;
     case 0xee:
-        printf("XRI     #$%", code[1]);
+        printf("XRI     #$%02x", code[1]);
         opbytes = 2;
         break;
     case 0xef:
@@ -777,20 +778,20 @@ int disassemble8080Op(unsigned char *codebuffer, int pc)
         printf("POP     PSW");
         break;
     case 0xf2:
-        printf("JP      #$%#$%", code[2], code[1]);
+        printf("JP      #$%02x%02x", code[2], code[1]);
         opbytes = 3;
         break;
     case 0xf3:
         printf("DI");
         break;
     case 0xf4:
-        printf("CP      #$%#$%", code[2], code[1]);
+        printf("CP      #$%02x%02x", code[2], code[1]);
         break;
     case 0xf5:
-        printf("PUSH PSW");
+        printf("PUSH    PSW");
         break;
     case 0xf6:
-        printf("ORI     #$%", code[1]);
+        printf("ORI     #$%02x", code[1]);
         opbytes = 2;
         break;
     case 0xf7:
@@ -803,21 +804,21 @@ int disassemble8080Op(unsigned char *codebuffer, int pc)
         printf("SPHL");
         break;
     case 0xfa:
-        printf("JM      #$%#$%", code[2], code[1]);
+        printf("JM      #$%02x%02x", code[2], code[1]);
         opbytes = 3;
         break;
     case 0xfb:
         printf("EI");
         break;
     case 0xfc:
-        printf("CM      #$%#$%", code[2], code[1]);
+        printf("CM      #$%02x%02x", code[2], code[1]);
         opbytes = 3;
         break;
     case 0xfd:
         printf("NOP");
         break;
     case 0xfe:
-        printf("CPI     #$%", code[1]);
+        printf("CPI     #$%02x", code[1]);
         opbytes = 2;
         break;
     case 0xff:
